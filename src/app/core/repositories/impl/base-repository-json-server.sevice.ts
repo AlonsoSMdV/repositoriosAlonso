@@ -32,11 +32,12 @@ export class BaseRepositoryJsonService<T extends Model> extends BaseRepositoryHt
     @Inject(REPOSITORY_MAPPING_TOKEN)  mapping:IBaseMapping<T>
   ) {
     super(http, apiUrl, resource, mapping)
-    this.apiUrl = apiUrl;
   }
 
   override getAll(page:number, pageSize:number): Observable<Paginated<T>> {
     return this.http.get<PaginatedRaw<T>>(`${this.apiUrl}/${this.resource}/?_page=${page}&_per_page=${pageSize}`)
-    .pipe(map(res=>this.mapping.getPaginated(page, pageSize, res.pages, res.data)));
+    .pipe(map(res=>{
+      return this.mapping.getPaginated(page, pageSize, res.pages, res.data)
+    }));
   }
 }

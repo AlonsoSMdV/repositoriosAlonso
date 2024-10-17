@@ -27,10 +27,10 @@ interface PersonRaw{
             name:data.nombre, 
             surname:data.apellidos, 
             age:(data as any) ["age"]??0,
-            picture:{
-                large:(data as any)["large"].large, 
-                thumbnail:(data as any)["thumbnail"].thumbnail
-            }};
+            picture:(data as any)["picture"]?{
+                large:(data as any)["picture"].large, 
+                thumbnail:(data as any)["picture"].thumbnail
+            }:undefined};
     }
     getAdded(data: PersonRaw):Person {
         return this.getOne(data);

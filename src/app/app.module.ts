@@ -13,6 +13,7 @@ import { PEOPLE_API_URL_TOKEN, PEOPLE_REPOSITORY_MAPPING_TOKEN, PEOPLE_RESOURCE_
 import { provideHttpClient } from '@angular/common/http';
 import { PeopleHttpMapping } from './core/repositories/impl/people-mapping-http.service';
 import { PeopleLocalStorageMapping } from './core/repositories/impl/people-mapping-local-storage.service';
+import { JsonServerStorageMapping } from './core/repositories/impl/people-mapping-json-server.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
@@ -20,12 +21,12 @@ import { PeopleLocalStorageMapping } from './core/repositories/impl/people-mappi
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideHttpClient(),
     
-    { provide: PEOPLE_RESOURCE_NAME_TOKEN, useValue: 'people' },
-    { provide: PEOPLE_API_URL_TOKEN, useValue: 'https://randomuser.me/api/?results=100' },
+    { provide: PEOPLE_RESOURCE_NAME_TOKEN, useValue: 'personas' },
+    { provide: PEOPLE_API_URL_TOKEN, useValue: 'https://localhost:3000' },
     // Registrar los repositorios
     { 
       provide: PEOPLE_REPOSITORY_MAPPING_TOKEN, 
-      useClass: PeopleLocalStorageMapping
+      useClass: JsonServerStorageMapping
     },
     PeopleRepositoryFactory,
     // Registrar otros repositorios según sea necesario

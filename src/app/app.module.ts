@@ -22,7 +22,7 @@ import { JsonServerStorageMapping } from './core/repositories/impl/people-mappin
     provideHttpClient(),
     
     { provide: PEOPLE_RESOURCE_NAME_TOKEN, useValue: 'personas' },
-    { provide: PEOPLE_API_URL_TOKEN, useValue: 'https://localhost:3000' },
+    { provide: PEOPLE_API_URL_TOKEN, useValue: 'http://localhost:3000' },
     // Registrar los repositorios
     { 
       provide: PEOPLE_REPOSITORY_MAPPING_TOKEN, 
